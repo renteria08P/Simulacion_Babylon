@@ -13,5 +13,14 @@ export const createEarth = (scene) => {
 
   earth.material = material;
 
+  earth.mass = 1;
+
+  // velocidad inicial orbital
+  earth.velocity = new BABYLON.Vector3(
+    0, 
+    0, 
+    0.02
+);
+
   return earth;
 };

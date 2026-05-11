@@ -1,5 +1,7 @@
 import * as BABYLON from "@babylonjs/core";
 
+import { applyGravity } from "./physics/gravity.js";
+
 import { createEarth } from "./objects/earth.js";
 import { createSun } from "./objects/sun.js";
 import { createStars } from "./objects/stars.js";
@@ -37,18 +39,15 @@ export const createScene = (engine, canvas) => {
 
   createStars(scene);
 
-  // Órbita básica
-  let angle = 0;
+  // posición inicial de la tierra
+  earth.position.x = 12;
 
-  const radius = 10;
-
+  // LOOP FÍSICO
   scene.registerBeforeRender(() => {
-    angle += 0.01;
+    // gravedad real
+    applyGravity(earth, sun);
 
-    earth.position.x = radius * Math.cos(angle);
-
-    earth.position.z = radius * Math.sin(angle);
-
+    // rotación
     earth.rotation.y += 0.01;
 
     sun.rotation.y += 0.002;

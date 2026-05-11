@@ -14,5 +14,7 @@ export const createSun = (scene) => {
 
   sun.material = material;
 
+  sun.mass = 500;
+
   return sun;
 };
